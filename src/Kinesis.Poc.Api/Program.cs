@@ -15,11 +15,11 @@ builder.Services.AddSingleton<TimeProvider>(TimeProvider.System);
 builder.Services.AddScoped<PatientRequestValidator>();
 builder.Services.AddDbContext<PatientsDbContext>(options =>
 {
-    var connectionString = builder.Configuration.GetConnectionString("PatientsDb");
+    var connectionString = builder.Configuration["KINESIS:ConnectionString_PatientsDb"];
     if (string.IsNullOrWhiteSpace(connectionString))
     {
         throw new InvalidOperationException(
-            "Configure la conexión mediante ConnectionStrings__PatientsDb o ConnectionStrings:PatientsDb.");
+            "Configure la conexión mediante la variable KINESIS__ConnectionString_PatientsDb.");
     }
 
     options.UseSqlServer(connectionString);
@@ -45,6 +45,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(options =>
     {
         options.RoutePrefix = "api/docs";
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Kinesis.Poc.Api v1");
     });
 }
 

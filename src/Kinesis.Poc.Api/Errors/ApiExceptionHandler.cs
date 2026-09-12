@@ -26,6 +26,7 @@ public sealed class ApiExceptionHandler(IProblemDetailsService problemDetailsSer
         }))
         {
             await httpContext.Response.WriteAsJsonAsync(problem,
+                options: (System.Text.Json.JsonSerializerOptions?)null,
                 contentType: "application/problem+json", cancellationToken: cancellationToken);
         }
 
