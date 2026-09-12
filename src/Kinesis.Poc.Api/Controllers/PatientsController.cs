@@ -210,7 +210,7 @@ public sealed class PatientsController(
         patient.DocumentNumber, patient.BirthDate, patient.Email, patient.Phone,
         patient.Status, patient.CreatedAt, patient.UpdatedAt);
 
-    private ObjectResult InvalidRequest(Dictionary<string, string[]> errors) =>
+    private ActionResult InvalidRequest(Dictionary<string, string[]> errors) =>
         ValidationProblem(new ValidationProblemDetails(errors)
         {
             Status = StatusCodes.Status400BadRequest,
