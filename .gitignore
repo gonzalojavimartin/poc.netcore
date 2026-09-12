@@ -55,3 +55,16 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Estado local del IDE
+.vs/
+*.user
+*.suo
+
+# Variantes locales de variables de entorno
+.env.*
+!.env.example
+
+# Configuración local con posibles secretos
+appsettings.Local.json
+appsettings.*.Local.json
